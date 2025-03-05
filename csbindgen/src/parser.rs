@@ -4,7 +4,7 @@ use crate::util::get_str_from_meta;
 use crate::{alias_map::AliasMap, builder::BindgenOptions, field_map::FieldMap, type_meta::*};
 use regex::Regex;
 use std::collections::HashSet;
-use syn::{ForeignItem, Item, Pat, ReturnType};
+use syn::{Attribute, ForeignItem, Item, Meta, Pat, Path, ReturnType};
 
 enum FnItem {
     ForeignItem(syn::ForeignItemFn),
@@ -119,20 +119,7 @@ fn parse_method(item: FnItem, options: &BindgenOptions) -> Option<ExternMethod> 
     // check attrs
     let mut export_naming = NoMangle;
     if !is_foreign_item {
-        let found = attrs
-            .iter()
-            .filter_map(|attr| {
-                let name = &attr.path().segments.last().unwrap().ident;
-                if name == "no_mangle" {
-                    return Some(NoMangle);
-                } else if name == "export_name" {
-                    if let Some(x) = get_str_from_meta(&attr.meta) {
-                        return Some(ExportName(x));
-                    }
-                }
-                None
-            })
-            .next();
+        let found = get_method_export_name_from_attrs(&attrs);
 
         if let Some(x) = found {
             export_naming = x;
@@ -672,4 +659,31 @@ fn parse_type_path(t: &syn::TypePath) -> RustType {
         type_name: last_segment.ident.to_string(),
         type_kind: TypeKind::Normal,
     }
+}
+
+fn get_method_export_name_from_attrs<'a>(
+    attrs: impl IntoIterator<Item = &'a Attribute>,
+) -> Option<ExportSymbolNaming> {
+    attrs
+        .into_iter()
+        .find_map(|attr| try_get_export_name_from_attr(attr.path(), &attr.meta))
+}
+
+fn try_get_export_name_from_attr(path: &Path, meta: &Meta) -> Option<ExportSymbolNaming> {
+    let name = &path.segments.last().unwrap().ident;
+
+    if name == "unsafe" {
+        let inner_tokens = meta.require_list().unwrap();
+        let inner_parsed = syn::parse2::<Meta>(inner_tokens.tokens.clone()).unwrap();
+
+        return try_get_export_name_from_attr(inner_parsed.path(), &inner_parsed);
+    } else if name == "no_mangle" {
+        return Some(NoMangle);
+    } else if name == "export_name" {
+        if let Some(x) = get_str_from_meta(meta) {
+            return Some(ExportName(x));
+        }
+    }
+
+    None
 }
