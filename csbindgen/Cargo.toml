@@ -1,7 +1,7 @@
 [package]
 name = "csbindgen"
 version = "1.9.3"
-edition = "2021"
+edition.workspace = true
 authors = ["Yoshifumi Kawai <ils@neue.cc>", "Cysharp, Inc."]
 description = "Generate C# FFI from Rust for automatically brings native code and C native library to .NET and Unity."
 keywords = ["bindings", "ffi", "code-generation", "csharp"]
@@ -12,5 +12,5 @@ homepage = "https://github.com/Cysharp/csbindgen/"
 repository = "https://github.com/Cysharp/csbindgen/"
 
 [dependencies]
-syn = { version = "2.0.90", features = ["full", "parsing"] }
-regex = "1.11.1"
+syn = { workspace = true, features = ["full", "parsing"] }
+regex.workspace = true

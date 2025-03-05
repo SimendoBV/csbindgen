@@ -1,3 +1,15 @@
 [workspace]
 members = ["csbindgen", "csbindgen-tests"]
 resolver = "2"
+
+[workspace.package]
+edition = "2021"
+
+[workspace.dependencies]
+csbindgen = { path = "csbindgen" }
+
+syn = { version = "2.0.90", features = ["full", "parsing"] }
+regex = "1.11.1"
+bitflags = "2.1.0"
+cc = "1.0.79"
+bindgen = "0.69.4"

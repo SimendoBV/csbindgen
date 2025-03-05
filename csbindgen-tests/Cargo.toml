@@ -1,7 +1,7 @@
 [package]
 name = "csbindgen-tests"
 version = "0.1.0"
-edition = "2021"
+edition.workspace = true
 publish = false
 
 # [[bin]]
@@ -18,6 +18,6 @@ bitflags = "2.1.0"
 # physx-sys = "0.11.0"
 
 [build-dependencies]
-cc = "1.0.79"
-bindgen = "0.69.4"
-csbindgen = { path = "../csbindgen" }
+cc.workspace = true
+bindgen.workspace = true
+csbindgen.workspace = true
