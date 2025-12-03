@@ -45,67 +45,253 @@ namespace CsBindgen
         internal const int EnumSharedMemoryClientCommand_CMD_CREATE_RIGID_BODY = 9;
         internal const int EnumSharedMemoryClientCommand_CMD_DELETE_RIGID_BODY = 10;
         internal const int EnumSharedMemoryClientCommand_CMD_CREATE_SENSOR = 11;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_INIT_POSE = 12;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_SEND_PHYSICS_SIMULATION_PARAMETERS = 13;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_SEND_DESIRED_STATE = 14;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_ACTUAL_STATE = 15;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_DEBUG_LINES = 16;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_BODY_INFO = 17;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_INTERNAL_DATA = 18;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_STEP_FORWARD_SIMULATION = 19;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_RESET_SIMULATION = 20;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_PICK_BODY = 21;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_MOVE_PICKED_BODY = 22;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REMOVE_PICKING_CONSTRAINT_BODY = 23;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_CAMERA_IMAGE_DATA = 24;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_APPLY_EXTERNAL_FORCE = 25;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_CALCULATE_INVERSE_DYNAMICS = 26;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_CALCULATE_INVERSE_KINEMATICS = 27;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_CALCULATE_JACOBIAN = 28;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_CALCULATE_MASS_MATRIX = 29;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_USER_CONSTRAINT = 30;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_CONTACT_POINT_INFORMATION = 31;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_RAY_CAST_INTERSECTIONS = 32;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_AABB_OVERLAP = 33;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_SAVE_WORLD = 34;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_VISUAL_SHAPE_INFO = 35;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_UPDATE_VISUAL_SHAPE = 36;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_LOAD_TEXTURE = 37;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_SET_SHADOW = 38;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_USER_DEBUG_DRAW = 39;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_VR_EVENTS_DATA = 40;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_SET_VR_CAMERA_STATE = 41;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_SYNC_BODY_INFO = 42;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_STATE_LOGGING = 43;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_CONFIGURE_OPENGL_VISUALIZER = 44;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_KEYBOARD_EVENTS_DATA = 45;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_OPENGL_VISUALIZER_CAMERA = 46;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REMOVE_BODY = 47;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_CHANGE_DYNAMICS_INFO = 48;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_GET_DYNAMICS_INFO = 49;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_PROFILE_TIMING = 50;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_CREATE_COLLISION_SHAPE = 51;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_CREATE_VISUAL_SHAPE = 52;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_CREATE_MULTI_BODY = 53;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_COLLISION_INFO = 54;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_MOUSE_EVENTS_DATA = 55;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_CHANGE_TEXTURE = 56;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_SET_ADDITIONAL_SEARCH_PATH = 57;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_CUSTOM_COMMAND = 58;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_PHYSICS_SIMULATION_PARAMETERS = 59;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_SAVE_STATE = 60;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_RESTORE_STATE = 61;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REMOVE_STATE = 62;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_COLLISION_SHAPE_INFO = 63;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_SYNC_USER_DATA = 64;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_USER_DATA = 65;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_ADD_USER_DATA = 66;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REMOVE_USER_DATA = 67;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_COLLISION_FILTER = 68;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_MESH_DATA = 69;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_PERFORM_COLLISION_DETECTION = 70;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_RESET_MESH_DATA = 71;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_REQUEST_TETRA_MESH_DATA = 72;
+        /// <summary>
+        /// enable or disable joint feedback for force/torque sensors
+        /// </summary>
         internal const int EnumSharedMemoryClientCommand_CMD_MAX_CLIENT_COMMANDS = 73;
         internal const int EnumSharedMemoryServerStatus_CMD_SHARED_MEMORY_NOT_INITIALIZED = 0;
         internal const int EnumSharedMemoryServerStatus_CMD_WAITING_FOR_CLIENT_COMMAND = 1;
@@ -2233,6 +2419,13 @@ namespace CsBindgen
         public b3CollisionShapeData* m_collisionShapeData;
     }
 
+    /// <summary>
+    /// b3LinkState provides extra information such as the Cartesian world coordinates
+    /// center of mass (COM) of the link, relative to the world reference frame.
+    /// Orientation is a quaternion x,y,z,w
+    /// Note: to compute the URDF link frame (which equals the joint frame at joint position 0)
+    /// use URDF link frame = link COM frame * inertiaFrame.inverse()
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     internal unsafe partial struct b3LinkState
     {
@@ -2240,6 +2433,9 @@ namespace CsBindgen
         public fixed double m_worldOrientation[4];
         public fixed double m_localInertialPosition[3];
         public fixed double m_localInertialOrientation[4];
+        /// <summary>
+        /// world position and orientation of the (URDF) link frame
+        /// </summary>
         public fixed double m_worldLinkFramePosition[3];
         public fixed double m_worldLinkFrameOrientation[4];
         public fixed double m_worldLinearVelocity[3];

@@ -18226,35 +18226,83 @@ namespace Physx
     }
 
 
+    /// <summary>
+    ///  enum for empty constructor tag
+    /// </summary>
     internal enum PxEMPTY : int
     {
         PxEmpty = 0,
     }
 
+    /// <summary>
+    ///  enum for zero constructor tag for vectors and matrices
+    /// </summary>
     internal enum PxZERO : int
     {
         PxZero = 0,
     }
 
+    /// <summary>
+    ///  enum for identity constructor flag for quaternions, transforms, and matrices
+    /// </summary>
     internal enum PxIDENTITY : int
     {
         PxIdentity = 0,
     }
 
+    /// <summary>
+    ///  Error codes
+    ///
+    ///  These error codes are passed to [`PxErrorCallback`]
+    /// </summary>
     internal enum PxErrorCode : int
     {
         NoError = 0,
+        /// <summary>
+        ///  An informational message.
+        /// </summary>
         DebugInfo = 1,
+        /// <summary>
+        ///  a warning message for the user to help with debugging
+        /// </summary>
         DebugWarning = 2,
+        /// <summary>
+        ///  method called with invalid parameter(s)
+        /// </summary>
         InvalidParameter = 4,
+        /// <summary>
+        ///  method was called at a time when an operation is not possible
+        /// </summary>
         InvalidOperation = 8,
+        /// <summary>
+        ///  method failed to allocate some memory
+        /// </summary>
         OutOfMemory = 16,
+        /// <summary>
+        ///  The library failed for some reason.
+        ///  Possibly you have passed invalid values like NaNs, which are not checked for.
+        /// </summary>
         InternalError = 32,
+        /// <summary>
+        ///  An unrecoverable error, execution should be halted and log output flushed
+        /// </summary>
         Abort = 64,
+        /// <summary>
+        ///  The SDK has determined that an operation may result in poor performance.
+        /// </summary>
         PerfWarning = 128,
+        /// <summary>
+        ///  A bit mask for including all errors
+        /// </summary>
         MaskAll = -1,
     }
 
+    /// <summary>
+    ///  an enumeration of concrete classes inheriting from PxBase
+    ///
+    ///  Enumeration space is reserved for future PhysX core types, PhysXExtensions,
+    ///  PhysXVehicle and Custom application types.
+    /// </summary>
     internal enum PxConcreteType : int
     {
         Undefined = 0,
@@ -18304,6 +18352,9 @@ namespace Physx
         FirstUserExtension = 1024,
     }
 
+    /// <summary>
+    ///  Flags for PxBase.
+    /// </summary>
     internal enum PxBaseFlag : int
     {
         OwnsMemory = 1,
@@ -18317,13 +18368,30 @@ namespace Physx
         IsReleasable = 1 << 1,
     }
 
+    /// <summary>
+    ///  Identifies the type of each heavyweight PxTask object
+    /// </summary>
     internal enum PxTaskType : int
     {
+        /// <summary>
+        ///  PxTask will be run on the CPU
+        /// </summary>
         Cpu = 0,
+        /// <summary>
+        ///  Return code when attempting to find a task that does not exist
+        /// </summary>
         NotPresent = 1,
+        /// <summary>
+        ///  PxTask execution has been completed
+        /// </summary>
         Completed = 2,
     }
 
+    /// <summary>
+    ///  A geometry type.
+    ///
+    ///  Used to distinguish the type of a ::PxGeometry object.
+    /// </summary>
     internal enum PxGeometryType : int
     {
         Sphere = 0,
@@ -18337,7 +18405,13 @@ namespace Physx
         Heightfield = 8,
         Hairsystem = 9,
         Custom = 10,
+        /// <summary>
+        ///  internal use only!
+        /// </summary>
         GeometryCount = 11,
+        /// <summary>
+        ///  internal use only!
+        /// </summary>
         Invalid = -1,
     }
 
@@ -18347,10 +18421,22 @@ namespace Physx
         SimdGuard = 1 << 0,
     }
 
+    /// <summary>
+    ///  Desired build strategy for bounding-volume hierarchies
+    /// </summary>
     internal enum PxBVHBuildStrategy : int
     {
+        /// <summary>
+        ///  Fast build strategy. Fast build speed, good runtime performance in most cases. Recommended for runtime cooking.
+        /// </summary>
         Fast = 0,
+        /// <summary>
+        ///  Default build strategy. Medium build speed, good runtime performance in all cases.
+        /// </summary>
         Default = 1,
+        /// <summary>
+        ///  SAH build strategy. Slower builds, slightly improved runtime performance in some cases.
+        /// </summary>
         Sah = 2,
         Last = 3,
     }
@@ -18368,11 +18454,26 @@ namespace Physx
         DoubleSided = 1 << 1,
     }
 
+    /// <summary>
+    ///  Identifies the solver to use for a particle system.
+    /// </summary>
     internal enum PxParticleSolverType : int
     {
+        /// <summary>
+        ///  The position based dynamics solver that can handle fluid, granular material, cloth, inflatables etc. See [`PxPBDParticleSystem`].
+        /// </summary>
         Pbd = 1,
+        /// <summary>
+        ///  The FLIP fluid solver. See [`PxFLIPParticleSystem`].
+        /// </summary>
         Flip = 2,
+        /// <summary>
+        ///  The MPM (material point method) solver that can handle a variety of materials. See [`PxMPMParticleSystem`].
+        /// </summary>
         Mpm = 4,
+        /// <summary>
+        ///  Custom solver. The user needs to specify the interaction of the particle by providing appropriate functions. Can be used e.g. for molecular dynamics simulations. See [`PxCustomParticleSystem`].
+        /// </summary>
         Custom = 8,
     }
 
@@ -18393,8 +18494,27 @@ namespace Physx
         ModifiableFlags = AssumeNoInitialOverlap | MeshMultiple | MeshBothSides | PreciseSweep,
     }
 
+    /// <summary>
+    ///  Describes the format of height field samples.
+    /// </summary>
     internal enum PxHeightFieldFormat : int
     {
+        /// <summary>
+        ///  Height field height data is 16 bit signed integers, followed by triangle materials.
+        ///
+        ///  Each sample is 32 bits wide arranged as follows:
+        ///
+        ///  1) First there is a 16 bit height value.
+        ///  2) Next, two one byte material indices, with the high bit of each byte reserved for special use.
+        ///  (so the material index is only 7 bits).
+        ///  The high bit of material0 is the tess-flag.
+        ///  The high bit of material1 is reserved for future use.
+        ///
+        ///  There are zero or more unused bytes before the next sample depending on PxHeightFieldDesc.sampleStride,
+        ///  where the application may eventually keep its own data.
+        ///
+        ///  This is the only format supported at the moment.
+        /// </summary>
         S16Tm = 1,
     }
 
@@ -18411,9 +18531,25 @@ namespace Physx
         E16BitIndices = 1 << 1,
     }
 
+    /// <summary>
+    ///  Mesh midphase structure. This enum is used to select the desired acceleration structure for midphase queries
+    ///  (i.e. raycasts, overlaps, sweeps vs triangle meshes).
+    ///
+    ///  The PxMeshMidPhase::eBVH33 structure is the one used in recent PhysX versions (up to PhysX 3.3). It has great performance and is
+    ///  supported on all platforms. It is deprecated since PhysX 5.x.
+    ///
+    ///  The PxMeshMidPhase::eBVH34 structure is a revisited implementation introduced in PhysX 3.4. It can be significantly faster both
+    ///  in terms of cooking performance and runtime performance.
+    /// </summary>
     internal enum PxMeshMidPhase : int
     {
+        /// <summary>
+        ///  Default midphase mesh structure, as used up to PhysX 3.3 (deprecated)
+        /// </summary>
         Bvh33 = 0,
+        /// <summary>
+        ///  New midphase mesh structure, introduced in PhysX 3.4
+        /// </summary>
         Bvh34 = 1,
         Last = 2,
     }
@@ -18432,11 +18568,41 @@ namespace Physx
         E16BitIndices = 1 << 1,
     }
 
+    /// <summary>
+    ///  Flags which control the behavior of an actor.
+    /// </summary>
     internal enum PxActorFlag : int
     {
+        /// <summary>
+        ///  Enable debug renderer for this actor
+        /// </summary>
         Visualization = 1,
+        /// <summary>
+        ///  Disables scene gravity for this actor
+        /// </summary>
         DisableGravity = 2,
+        /// <summary>
+        ///  Enables the sending of PxSimulationEventCallback::onWake() and PxSimulationEventCallback::onSleep() notify events
+        /// </summary>
         SendSleepNotifies = 4,
+        /// <summary>
+        ///  Disables simulation for the actor.
+        ///
+        ///  This is only supported by PxRigidStatic and PxRigidDynamic actors and can be used to reduce the memory footprint when rigid actors are
+        ///  used for scene queries only.
+        ///
+        ///  Setting this flag will remove all constraints attached to the actor from the scene.
+        ///
+        ///  If this flag is set, the following calls are forbidden:
+        ///
+        ///  PxRigidBody: setLinearVelocity(), setAngularVelocity(), addForce(), addTorque(), clearForce(), clearTorque(), setForceAndTorque()
+        ///
+        ///  PxRigidDynamic: setKinematicTarget(), setWakeCounter(), wakeUp(), putToSleep()
+        ///
+        ///  Sleeping:
+        ///  Raising this flag will set all velocities and the wake counter to 0, clear all forces, clear the kinematic target, put the actor
+        ///  to sleep and wake up all touching actors from the previous frame.
+        /// </summary>
         DisableSimulation = 8,
     }
 
@@ -18449,20 +18615,44 @@ namespace Physx
         DisableSimulation = 1 << 3,
     }
 
+    /// <summary>
+    ///  Identifies each type of actor.
+    /// </summary>
     internal enum PxActorType : int
     {
+        /// <summary>
+        ///  A static rigid body
+        /// </summary>
         RigidStatic = 0,
+        /// <summary>
+        ///  A dynamic rigid body
+        /// </summary>
         RigidDynamic = 1,
+        /// <summary>
+        ///  An articulation link
+        /// </summary>
         ArticulationLink = 2,
     }
 
     internal enum PxAggregateType : int
     {
+        /// <summary>
+        ///  Aggregate will contain various actors of unspecified types
+        /// </summary>
         Generic = 0,
+        /// <summary>
+        ///  Aggregate will only contain static actors
+        /// </summary>
         Static = 1,
+        /// <summary>
+        ///  Aggregate will only contain kinematic actors
+        /// </summary>
         Kinematic = 2,
     }
 
+    /// <summary>
+    ///  Data structure used for preparing constraints before solving them
+    /// </summary>
     internal enum BodyState : int
     {
         DynamicBody = 1,
@@ -18471,39 +18661,97 @@ namespace Physx
         Articulation = 8,
     }
 
+    /// <summary>
+    ///  @
+    ///  {
+    /// </summary>
     internal enum PxArticulationAxis : int
     {
+        /// <summary>
+        ///  Rotational about eX
+        /// </summary>
         Twist = 0,
+        /// <summary>
+        ///  Rotational about eY
+        /// </summary>
         Swing1 = 1,
+        /// <summary>
+        ///  Rotational about eZ
+        /// </summary>
         Swing2 = 2,
+        /// <summary>
+        ///  Linear in eX
+        /// </summary>
         X = 3,
+        /// <summary>
+        ///  Linear in eY
+        /// </summary>
         Y = 4,
+        /// <summary>
+        ///  Linear in eZ
+        /// </summary>
         Z = 5,
         Count = 6,
     }
 
     internal enum PxArticulationMotion : int
     {
+        /// <summary>
+        ///  Locked axis, i.e. degree of freedom (DOF)
+        /// </summary>
         Locked = 0,
+        /// <summary>
+        ///  Limited DOF - set limits of joint DOF together with this flag, see PxArticulationJointReducedCoordinate::setLimitParams
+        /// </summary>
         Limited = 1,
+        /// <summary>
+        ///  Free DOF
+        /// </summary>
         Free = 2,
     }
 
     internal enum PxArticulationJointType : int
     {
+        /// <summary>
+        ///  All joint axes, i.e. degrees of freedom (DOFs) locked
+        /// </summary>
         Fix = 0,
+        /// <summary>
+        ///  Single linear DOF, e.g. cart on a rail
+        /// </summary>
         Prismatic = 1,
+        /// <summary>
+        ///  Single rotational DOF, e.g. an elbow joint or a rotational motor, position wrapped at 2pi radians
+        /// </summary>
         Revolute = 2,
+        /// <summary>
+        ///  Single rotational DOF, e.g. an elbow joint or a rotational motor, position not wrapped
+        /// </summary>
         RevoluteUnwrapped = 3,
+        /// <summary>
+        ///  Ball and socket joint with two or three DOFs
+        /// </summary>
         Spherical = 4,
         Undefined = 5,
     }
 
     internal enum PxArticulationFlag : int
     {
+        /// <summary>
+        ///  Set articulation base to be fixed.
+        /// </summary>
         FixBase = 1,
+        /// <summary>
+        ///  Limits for drive effort are forces and torques rather than impulses, see PxArticulationDrive::maxForce.
+        /// </summary>
         DriveLimitsAreForces = 2,
+        /// <summary>
+        ///  Disable collisions between the articulation's links (note that parent/child collisions are disabled internally in either case).
+        /// </summary>
         DisableSelfCollision = 4,
+        /// <summary>
+        ///  Enable in order to be able to query joint solver (i.e. constraint) forces using PxArticulationCache::jointSolverForces.
+        /// </summary>
         ComputeJointForces = 8,
     }
 
@@ -18518,32 +18766,104 @@ namespace Physx
 
     internal enum PxArticulationDriveType : int
     {
+        /// <summary>
+        ///  The output of the implicit spring drive controller is a force/torque.
+        /// </summary>
         Force = 0,
+        /// <summary>
+        ///  The output of the implicit spring drive controller is a joint acceleration (use this to get (spatial)-inertia-invariant behavior of the drive).
+        /// </summary>
         Acceleration = 1,
+        /// <summary>
+        ///  Sets the drive gains internally to track a target position almost kinematically (i.e. with very high drive gains).
+        /// </summary>
         Target = 2,
+        /// <summary>
+        ///  Sets the drive gains internally to track a target velocity almost kinematically (i.e. with very high drive gains).
+        /// </summary>
         Velocity = 3,
         None = 4,
     }
 
+    /// <summary>
+    ///  A description of the types of articulation data that may be directly written to and read from the GPU using the functions
+    ///  PxScene::copyArticulationData() and PxScene::applyArticulationData(). Types that are read-only may only be used in conjunction with
+    ///  PxScene::copyArticulationData(). Types that are write-only may only be used in conjunction with PxScene::applyArticulationData().
+    ///  A subset of data types may be used in conjunction with both PxScene::applyArticulationData() and PxScene::applyArticulationData().
+    /// </summary>
     internal enum PxArticulationGpuDataType : int
     {
+        /// <summary>
+        ///  The joint positions, read and write, see PxScene::copyArticulationData(), PxScene::applyArticulationData()
+        /// </summary>
         JointPosition = 0,
+        /// <summary>
+        ///  The joint velocities, read and write,  see PxScene::copyArticulationData(), PxScene::applyArticulationData()
+        /// </summary>
         JointVelocity = 1,
+        /// <summary>
+        ///  The joint accelerations, read only, see PxScene::copyArticulationData()
+        /// </summary>
         JointAcceleration = 2,
+        /// <summary>
+        ///  The applied joint forces, write only, see PxScene::applyArticulationData()
+        /// </summary>
         JointForce = 3,
+        /// <summary>
+        ///  The computed joint constraint solver forces, read only, see PxScene::copyArticulationData()()
+        /// </summary>
         JointSolverForce = 4,
+        /// <summary>
+        ///  The velocity targets for the joint drives, write only, see PxScene::applyArticulationData()
+        /// </summary>
         JointTargetVelocity = 5,
+        /// <summary>
+        ///  The position targets for the joint drives, write only, see PxScene::applyArticulationData()
+        /// </summary>
         JointTargetPosition = 6,
+        /// <summary>
+        ///  The spatial sensor forces, read only, see PxScene::copyArticulationData()
+        /// </summary>
         SensorForce = 7,
+        /// <summary>
+        ///  The root link transform, read and write, see PxScene::copyArticulationData(), PxScene::applyArticulationData()
+        /// </summary>
         RootTransform = 8,
+        /// <summary>
+        ///  The root link velocity, read and write, see PxScene::copyArticulationData(), PxScene::applyArticulationData()
+        /// </summary>
         RootVelocity = 9,
+        /// <summary>
+        ///  The link transforms including root link, read only, see PxScene::copyArticulationData()
+        /// </summary>
         LinkTransform = 10,
+        /// <summary>
+        ///  The link velocities including root link, read only, see PxScene::copyArticulationData()
+        /// </summary>
         LinkVelocity = 11,
+        /// <summary>
+        ///  The forces to apply to links, write only, see PxScene::applyArticulationData()
+        /// </summary>
         LinkForce = 12,
+        /// <summary>
+        ///  The torques to apply to links, write only, see PxScene::applyArticulationData()
+        /// </summary>
         LinkTorque = 13,
+        /// <summary>
+        ///  Fixed tendon data, write only, see PxScene::applyArticulationData()
+        /// </summary>
         FixedTendon = 14,
+        /// <summary>
+        ///  Fixed tendon joint data, write only, see PxScene::applyArticulationData()
+        /// </summary>
         FixedTendonJoint = 15,
+        /// <summary>
+        ///  Spatial tendon data, write only, see PxScene::applyArticulationData()
+        /// </summary>
         SpatialTendon = 16,
+        /// <summary>
+        ///  Spatial tendon attachment data, write only, see PxScene::applyArticulationData()
+        /// </summary>
         SpatialTendonAttachment = 17,
     }
 
@@ -18563,10 +18883,22 @@ namespace Physx
         All = Velocity | Acceleration | Position | LinkVelocity | LinkAcceleration | RootTransform | RootVelocities,
     }
 
+    /// <summary>
+    ///  Flags to configure the forces reported by articulation link sensors.
+    /// </summary>
     internal enum PxArticulationSensorFlag : int
     {
+        /// <summary>
+        ///  Raise to receive forces from forward dynamics.
+        /// </summary>
         ForwardDynamicsForces = 1,
+        /// <summary>
+        ///  Raise to receive forces from constraint solver.
+        /// </summary>
         ConstraintSolverForces = 2,
+        /// <summary>
+        ///  Raise to receive forces in the world rotation frame, otherwise they will be reported in the sensor's local frame.
+        /// </summary>
         WorldFrame = 4,
     }
 
@@ -18585,11 +18917,48 @@ namespace Physx
         Velocity = 1 << 1,
     }
 
+    /// <summary>
+    ///  Flags which affect the behavior of PxShapes.
+    /// </summary>
     internal enum PxShapeFlag : int
     {
+        /// <summary>
+        ///  The shape will partake in collision in the physical simulation.
+        ///
+        ///  It is illegal to raise the eSIMULATION_SHAPE and eTRIGGER_SHAPE flags.
+        ///  In the event that one of these flags is already raised the sdk will reject any
+        ///  attempt to raise the other.  To raise the eSIMULATION_SHAPE first ensure that
+        ///  eTRIGGER_SHAPE is already lowered.
+        ///
+        ///  This flag has no effect if simulation is disabled for the corresponding actor (see [`PxActorFlag::eDISABLE_SIMULATION`]).
+        /// </summary>
         SimulationShape = 1,
+        /// <summary>
+        ///  The shape will partake in scene queries (ray casts, overlap tests, sweeps, ...).
+        /// </summary>
         SceneQueryShape = 2,
+        /// <summary>
+        ///  The shape is a trigger which can send reports whenever other shapes enter/leave its volume.
+        ///
+        ///  Triangle meshes and heightfields can not be triggers. Shape creation will fail in these cases.
+        ///
+        ///  Shapes marked as triggers do not collide with other objects. If an object should act both
+        ///  as a trigger shape and a collision shape then create a rigid body with two shapes, one being a
+        ///  trigger shape and the other a collision shape. It is illegal to raise the eTRIGGER_SHAPE and
+        ///  eSIMULATION_SHAPE flags on a single PxShape instance.  In the event that one of these flags is already
+        ///  raised the sdk will reject any attempt to raise the other.  To raise the eTRIGGER_SHAPE flag first
+        ///  ensure that eSIMULATION_SHAPE flag is already lowered.
+        ///
+        ///  Trigger shapes will no longer send notification events for interactions with other trigger shapes.
+        ///
+        ///  Shapes marked as triggers are allowed to participate in scene queries, provided the eSCENE_QUERY_SHAPE flag is set.
+        ///
+        ///  This flag has no effect if simulation is disabled for the corresponding actor (see [`PxActorFlag::eDISABLE_SIMULATION`]).
+        /// </summary>
         TriggerShape = 4,
+        /// <summary>
+        ///  Enable debug renderer for this shape
+        /// </summary>
         Visualization = 8,
     }
 
@@ -18602,26 +18971,114 @@ namespace Physx
         Visualization = 1 << 3,
     }
 
+    /// <summary>
+    ///  Parameter to addForce() and addTorque() calls, determines the exact operation that is carried out.
+    /// </summary>
     internal enum PxForceMode : int
     {
+        /// <summary>
+        ///  parameter has unit of mass * length / time^2, i.e., a force
+        /// </summary>
         Force = 0,
+        /// <summary>
+        ///  parameter has unit of mass * length / time, i.e., force * time
+        /// </summary>
         Impulse = 1,
+        /// <summary>
+        ///  parameter has unit of length / time, i.e., the effect is mass independent: a velocity change.
+        /// </summary>
         VelocityChange = 2,
+        /// <summary>
+        ///  parameter has unit of length/ time^2, i.e., an acceleration. It gets treated just like a force except the mass is not divided out before integration.
+        /// </summary>
         Acceleration = 3,
     }
 
+    /// <summary>
+    ///  Collection of flags describing the behavior of a rigid body.
+    /// </summary>
     internal enum PxRigidBodyFlag : int
     {
+        /// <summary>
+        ///  Enable kinematic mode for the body.
+        /// </summary>
         Kinematic = 1,
+        /// <summary>
+        ///  Use the kinematic target transform for scene queries.
+        ///
+        ///  If this flag is raised, then scene queries will treat the kinematic target transform as the current pose
+        ///  of the body (instead of using the actual pose). Without this flag, the kinematic target will only take
+        ///  effect with respect to scene queries after a simulation step.
+        /// </summary>
         UseKinematicTargetForSceneQueries = 2,
+        /// <summary>
+        ///  Enable CCD for the body.
+        /// </summary>
         EnableCcd = 4,
+        /// <summary>
+        ///  Enabled CCD in swept integration for the actor.
+        ///
+        ///  If this flag is raised and CCD is enabled, CCD interactions will simulate friction. By default, friction is disabled in CCD interactions because
+        ///  CCD friction has been observed to introduce some simulation artifacts. CCD friction was enabled in previous versions of the SDK. Raising this flag will result in behavior
+        ///  that is a closer match for previous versions of the SDK.
+        ///
+        ///  This flag requires PxRigidBodyFlag::eENABLE_CCD to be raised to have any effect.
+        /// </summary>
         EnableCcdFriction = 8,
+        /// <summary>
+        ///  Register a rigid body to dynamically adjust contact offset based on velocity. This can be used to achieve a CCD effect.
+        ///
+        ///  If both eENABLE_CCD and eENABLE_SPECULATIVE_CCD are set on the same body, then angular motions are handled by speculative
+        ///  contacts (eENABLE_SPECULATIVE_CCD) while linear motions are handled by sweeps (eENABLE_CCD).
+        /// </summary>
         EnableSpeculativeCcd = 16,
+        /// <summary>
+        ///  Register a rigid body for reporting pose changes by the simulation at an early stage.
+        ///
+        ///  Sometimes it might be advantageous to get access to the new pose of a rigid body as early as possible and
+        ///  not wait until the call to fetchResults() returns. Setting this flag will schedule the rigid body to get reported
+        ///  in [`PxSimulationEventCallback::onAdvance`](). Please refer to the documentation of that callback to understand
+        ///  the behavior and limitations of this functionality.
+        /// </summary>
         EnablePoseIntegrationPreview = 32,
+        /// <summary>
+        ///  Permit CCD to limit maxContactImpulse. This is useful for use-cases like a destruction system but can cause visual artefacts so is not enabled by default.
+        /// </summary>
         EnableCcdMaxContactImpulse = 64,
+        /// <summary>
+        ///  Carries over forces/accelerations between frames, rather than clearing them
+        /// </summary>
         RetainAccelerations = 128,
+        /// <summary>
+        ///  Forces kinematic-kinematic pairs notifications for this actor.
+        ///
+        ///  This flag overrides the global scene-level PxPairFilteringMode setting for kinematic actors.
+        ///  This is equivalent to having PxPairFilteringMode::eKEEP for pairs involving this actor.
+        ///
+        ///  A particular use case is when you have a large amount of kinematic actors, but you are only
+        ///  interested in interactions between a few of them. In this case it is best to use
+        ///  PxSceneDesc.kineKineFilteringMode = PxPairFilteringMode::eKILL, and then raise the
+        ///  eFORCE_KINE_KINE_NOTIFICATIONS flag on the small set of kinematic actors that need
+        ///  notifications.
+        ///
+        ///  This has no effect if PxRigidBodyFlag::eKINEMATIC is not set.
+        ///
+        ///  Changing this flag at runtime will not have an effect until you remove and re-add the actor to the scene.
+        /// </summary>
         ForceKineKineNotifications = 256,
+        /// <summary>
+        ///  Forces static-kinematic pairs notifications for this actor.
+        ///
+        ///  Similar to eFORCE_KINE_KINE_NOTIFICATIONS, but for static-kinematic interactions.
+        ///
+        ///  This has no effect if PxRigidBodyFlag::eKINEMATIC is not set.
+        ///
+        ///  Changing this flag at runtime will not have an effect until you remove and re-add the actor to the scene.
+        /// </summary>
         ForceStaticKineNotifications = 512,
+        /// <summary>
+        ///  Enables computation of gyroscopic forces on the rigid body.
+        /// </summary>
         EnableGyroscopicForces = 1024,
     }
 
@@ -18641,20 +19098,66 @@ namespace Physx
         EnableGyroscopicForces = 1 << 10,
     }
 
+    /// <summary>
+    ///  constraint flags
+    ///
+    ///  eBROKEN is a read only flag
+    /// </summary>
     internal enum PxConstraintFlag : int
     {
+        /// <summary>
+        ///  whether the constraint is broken
+        /// </summary>
         Broken = 1,
+        /// <summary>
+        ///  whether actor1 should get projected to actor0 for this constraint (note: projection of a static/kinematic actor to a dynamic actor will be ignored)
+        /// </summary>
         ProjectToActor0 = 2,
+        /// <summary>
+        ///  whether actor0 should get projected to actor1 for this constraint (note: projection of a static/kinematic actor to a dynamic actor will be ignored)
+        /// </summary>
         ProjectToActor1 = 4,
+        /// <summary>
+        ///  whether the actors should get projected for this constraint (the direction will be chosen by PhysX)
+        /// </summary>
         Projection = 6,
+        /// <summary>
+        ///  whether contacts should be generated between the objects this constraint constrains
+        /// </summary>
         CollisionEnabled = 8,
+        /// <summary>
+        ///  whether this constraint should be visualized, if constraint visualization is turned on
+        /// </summary>
         Visualization = 16,
+        /// <summary>
+        ///  limits for drive strength are forces rather than impulses
+        /// </summary>
         DriveLimitsAreForces = 32,
+        /// <summary>
+        ///  perform preprocessing for improved accuracy on D6 Slerp Drive (this flag will be removed in a future release when preprocessing is no longer required)
+        /// </summary>
         ImprovedSlerp = 128,
+        /// <summary>
+        ///  suppress constraint preprocessing, intended for use with rowResponseThreshold. May result in worse solver accuracy for ill-conditioned constraints.
+        /// </summary>
         DisablePreprocessing = 256,
+        /// <summary>
+        ///  enables extended limit ranges for angular limits (e.g., limit values &gt; PxPi or
+        ///  &lt;
+        ///  -PxPi)
+        /// </summary>
         EnableExtendedLimits = 512,
+        /// <summary>
+        ///  the constraint type is supported by gpu dynamics
+        /// </summary>
         GpuCompatible = 1024,
+        /// <summary>
+        ///  updates the constraint each frame
+        /// </summary>
         AlwaysUpdate = 2048,
+        /// <summary>
+        ///  disables the constraint. SolverPrep functions won't be called for this constraint.
+        /// </summary>
         DisableConstraint = 4096,
     }
 
@@ -18676,6 +19179,9 @@ namespace Physx
         DisableConstraint = 1 << 12,
     }
 
+    /// <summary>
+    ///  A class to iterate over a compressed contact stream. This supports read-only access to the various contact formats.
+    /// </summary>
     internal enum StreamFormat : int
     {
         SimpleStream = 0,
@@ -18683,9 +19189,18 @@ namespace Physx
         CompressedModifiableStream = 2,
     }
 
+    /// <summary>
+    ///  Flags specifying deletion event types.
+    /// </summary>
     internal enum PxDeletionEventFlag : int
     {
+        /// <summary>
+        ///  The user has called release on an object.
+        /// </summary>
         UserRelease = 1,
+        /// <summary>
+        ///  The destructor of an object has been called and the memory has been released.
+        /// </summary>
         MemoryRelease = 2,
     }
 
@@ -18696,25 +19211,184 @@ namespace Physx
         MemoryRelease = 1 << 1,
     }
 
+    /// <summary>
+    ///  Collection of flags describing the actions to take for a collision pair.
+    /// </summary>
     internal enum PxPairFlag : int
     {
+        /// <summary>
+        ///  Process the contacts of this collision pair in the dynamics solver.
+        ///
+        ///  Only takes effect if the colliding actors are rigid bodies.
+        /// </summary>
         SolveContact = 1,
+        /// <summary>
+        ///  Call contact modification callback for this collision pair
+        ///
+        ///  Only takes effect if the colliding actors are rigid bodies.
+        /// </summary>
         ModifyContacts = 2,
+        /// <summary>
+        ///  Call contact report callback or trigger callback when this collision pair starts to be in contact.
+        ///
+        ///  If one of the two collision objects is a trigger shape (see [`PxShapeFlag::eTRIGGER_SHAPE`])
+        ///  then the trigger callback will get called as soon as the other object enters the trigger volume.
+        ///  If none of the two collision objects is a trigger shape then the contact report callback will get
+        ///  called when the actors of this collision pair start to be in contact.
+        ///
+        ///  Only takes effect if the colliding actors are rigid bodies.
+        ///
+        ///  Only takes effect if eDETECT_DISCRETE_CONTACT or eDETECT_CCD_CONTACT is raised
+        /// </summary>
         NotifyTouchFound = 4,
+        /// <summary>
+        ///  Call contact report callback while this collision pair is in contact
+        ///
+        ///  If none of the two collision objects is a trigger shape then the contact report callback will get
+        ///  called while the actors of this collision pair are in contact.
+        ///
+        ///  Triggers do not support this event. Persistent trigger contacts need to be tracked separately by observing eNOTIFY_TOUCH_FOUND/eNOTIFY_TOUCH_LOST events.
+        ///
+        ///  Only takes effect if the colliding actors are rigid bodies.
+        ///
+        ///  No report will get sent if the objects in contact are sleeping.
+        ///
+        ///  Only takes effect if eDETECT_DISCRETE_CONTACT or eDETECT_CCD_CONTACT is raised
+        ///
+        ///  If this flag gets enabled while a pair is in touch already, there will be no eNOTIFY_TOUCH_PERSISTS events until the pair loses and regains touch.
+        /// </summary>
         NotifyTouchPersists = 8,
+        /// <summary>
+        ///  Call contact report callback or trigger callback when this collision pair stops to be in contact
+        ///
+        ///  If one of the two collision objects is a trigger shape (see [`PxShapeFlag::eTRIGGER_SHAPE`])
+        ///  then the trigger callback will get called as soon as the other object leaves the trigger volume.
+        ///  If none of the two collision objects is a trigger shape then the contact report callback will get
+        ///  called when the actors of this collision pair stop to be in contact.
+        ///
+        ///  Only takes effect if the colliding actors are rigid bodies.
+        ///
+        ///  This event will also get triggered if one of the colliding objects gets deleted.
+        ///
+        ///  Only takes effect if eDETECT_DISCRETE_CONTACT or eDETECT_CCD_CONTACT is raised
+        /// </summary>
         NotifyTouchLost = 16,
+        /// <summary>
+        ///  Call contact report callback when this collision pair is in contact during CCD passes.
+        ///
+        ///  If CCD with multiple passes is enabled, then a fast moving object might bounce on and off the same
+        ///  object multiple times. Hence, the same pair might be in contact multiple times during a simulation step.
+        ///  This flag will make sure that all the detected collision during CCD will get reported. For performance
+        ///  reasons, the system can not always tell whether the contact pair lost touch in one of the previous CCD
+        ///  passes and thus can also not always tell whether the contact is new or has persisted. eNOTIFY_TOUCH_CCD
+        ///  just reports when the two collision objects were detected as being in contact during a CCD pass.
+        ///
+        ///  Only takes effect if the colliding actors are rigid bodies.
+        ///
+        ///  Trigger shapes are not supported.
+        ///
+        ///  Only takes effect if eDETECT_CCD_CONTACT is raised
+        /// </summary>
         NotifyTouchCcd = 32,
+        /// <summary>
+        ///  Call contact report callback when the contact force between the actors of this collision pair exceeds one of the actor-defined force thresholds.
+        ///
+        ///  Only takes effect if the colliding actors are rigid bodies.
+        ///
+        ///  Only takes effect if eDETECT_DISCRETE_CONTACT or eDETECT_CCD_CONTACT is raised
+        /// </summary>
         NotifyThresholdForceFound = 64,
+        /// <summary>
+        ///  Call contact report callback when the contact force between the actors of this collision pair continues to exceed one of the actor-defined force thresholds.
+        ///
+        ///  Only takes effect if the colliding actors are rigid bodies.
+        ///
+        ///  If a pair gets re-filtered and this flag has previously been disabled, then the report will not get fired in the same frame even if the force threshold has been reached in the
+        ///  previous one (unless [`eNOTIFY_THRESHOLD_FORCE_FOUND`] has been set in the previous frame).
+        ///
+        ///  Only takes effect if eDETECT_DISCRETE_CONTACT or eDETECT_CCD_CONTACT is raised
+        /// </summary>
         NotifyThresholdForcePersists = 128,
+        /// <summary>
+        ///  Call contact report callback when the contact force between the actors of this collision pair falls below one of the actor-defined force thresholds (includes the case where this collision pair stops being in contact).
+        ///
+        ///  Only takes effect if the colliding actors are rigid bodies.
+        ///
+        ///  If a pair gets re-filtered and this flag has previously been disabled, then the report will not get fired in the same frame even if the force threshold has been reached in the
+        ///  previous one (unless [`eNOTIFY_THRESHOLD_FORCE_FOUND`] or #eNOTIFY_THRESHOLD_FORCE_PERSISTS has been set in the previous frame).
+        ///
+        ///  Only takes effect if eDETECT_DISCRETE_CONTACT or eDETECT_CCD_CONTACT is raised
+        /// </summary>
         NotifyThresholdForceLost = 256,
+        /// <summary>
+        ///  Provide contact points in contact reports for this collision pair.
+        ///
+        ///  Only takes effect if the colliding actors are rigid bodies and if used in combination with the flags eNOTIFY_TOUCH_... or eNOTIFY_THRESHOLD_FORCE_...
+        ///
+        ///  Only takes effect if eDETECT_DISCRETE_CONTACT or eDETECT_CCD_CONTACT is raised
+        /// </summary>
         NotifyContactPoints = 512,
+        /// <summary>
+        ///  This flag is used to indicate whether this pair generates discrete collision detection contacts.
+        ///
+        ///  Contacts are only responded to if eSOLVE_CONTACT is enabled.
+        /// </summary>
         DetectDiscreteContact = 1024,
+        /// <summary>
+        ///  This flag is used to indicate whether this pair generates CCD contacts.
+        ///
+        ///  The contacts will only be responded to if eSOLVE_CONTACT is enabled on this pair.
+        ///
+        ///  The scene must have PxSceneFlag::eENABLE_CCD enabled to use this feature.
+        ///
+        ///  Non-static bodies of the pair should have PxRigidBodyFlag::eENABLE_CCD specified for this feature to work correctly.
+        ///
+        ///  This flag is not supported with trigger shapes. However, CCD trigger events can be emulated using non-trigger shapes
+        ///  and requesting eNOTIFY_TOUCH_FOUND and eNOTIFY_TOUCH_LOST and not raising eSOLVE_CONTACT on the pair.
+        /// </summary>
         DetectCcdContact = 2048,
+        /// <summary>
+        ///  Provide pre solver velocities in contact reports for this collision pair.
+        ///
+        ///  If the collision pair has contact reports enabled, the velocities of the rigid bodies before contacts have been solved
+        ///  will be provided in the contact report callback unless the pair lost touch in which case no data will be provided.
+        ///
+        ///  Usually it is not necessary to request these velocities as they will be available by querying the velocity from the provided
+        ///  PxRigidActor object directly. However, it might be the case that the velocity of a rigid body gets set while the simulation is running
+        ///  in which case the PxRigidActor would return this new velocity in the contact report callback and not the velocity the simulation used.
+        /// </summary>
         PreSolverVelocity = 4096,
+        /// <summary>
+        ///  Provide post solver velocities in contact reports for this collision pair.
+        ///
+        ///  If the collision pair has contact reports enabled, the velocities of the rigid bodies after contacts have been solved
+        ///  will be provided in the contact report callback unless the pair lost touch in which case no data will be provided.
+        /// </summary>
         PostSolverVelocity = 8192,
+        /// <summary>
+        ///  Provide rigid body poses in contact reports for this collision pair.
+        ///
+        ///  If the collision pair has contact reports enabled, the rigid body poses at the contact event will be provided
+        ///  in the contact report callback unless the pair lost touch in which case no data will be provided.
+        ///
+        ///  Usually it is not necessary to request these poses as they will be available by querying the pose from the provided
+        ///  PxRigidActor object directly. However, it might be the case that the pose of a rigid body gets set while the simulation is running
+        ///  in which case the PxRigidActor would return this new pose in the contact report callback and not the pose the simulation used.
+        ///  Another use case is related to CCD with multiple passes enabled, A fast moving object might bounce on and off the same
+        ///  object multiple times. This flag can be used to request the rigid body poses at the time of impact for each such collision event.
+        /// </summary>
         ContactEventPose = 16384,
+        /// <summary>
+        ///  For internal use only.
+        /// </summary>
         NextFree = 32768,
+        /// <summary>
+        ///  Provided default flag to do simple contact processing for this collision pair.
+        /// </summary>
         ContactDefault = 1025,
+        /// <summary>
+        ///  Provided default flag to get commonly used trigger behavior for this collision pair.
+        /// </summary>
         TriggerDefault = 1044,
     }
 
@@ -18750,23 +19424,73 @@ namespace Physx
         Notify = Callback,
     }
 
+    /// <summary>
+    ///  Identifies each type of filter object.
+    /// </summary>
     internal enum PxFilterObjectType : int
     {
+        /// <summary>
+        ///  A static rigid body
+        /// </summary>
         RigidStatic = 0,
+        /// <summary>
+        ///  A dynamic rigid body
+        /// </summary>
         RigidDynamic = 1,
+        /// <summary>
+        ///  An articulation
+        /// </summary>
         Articulation = 2,
+        /// <summary>
+        ///  A particle system
+        /// </summary>
         Particlesystem = 3,
+        /// <summary>
+        ///  A FEM-based soft body
+        /// </summary>
         Softbody = 4,
+        /// <summary>
+        ///  A FEM-based cloth
+        ///
+        ///  In development
+        /// </summary>
         Femcloth = 5,
+        /// <summary>
+        ///  A hair system
+        ///
+        ///  In development
+        /// </summary>
         Hairsystem = 6,
+        /// <summary>
+        ///  internal use only!
+        /// </summary>
         MaxTypeCount = 16,
+        /// <summary>
+        ///  internal use only!
+        /// </summary>
         Undefined = 15,
     }
 
     internal enum PxPairFilteringMode : int
     {
+        /// <summary>
+        ///  Output pair from BP, potentially send to user callbacks, create regular interaction object.
+        ///
+        ///  Enable contact pair filtering between kinematic/static or kinematic/kinematic rigid bodies.
+        ///
+        ///  By default contacts between these are suppressed (see [`PxFilterFlag::eSUPPRESS`]) and don't get reported to the filter mechanism.
+        ///  Use this mode if these pairs should go through the filtering pipeline nonetheless.
+        ///
+        ///  This mode is not mutable, and must be set in PxSceneDesc at scene creation.
+        /// </summary>
         Keep = 0,
+        /// <summary>
+        ///  Output pair from BP, create interaction marker. Can be later switched to regular interaction.
+        /// </summary>
         Suppress = 1,
+        /// <summary>
+        ///  Don't output pair from BP. Cannot be later switched to regular interaction, needs "resetFiltering" call.
+        /// </summary>
         Kill = 2,
     }
 
@@ -18778,11 +19502,51 @@ namespace Physx
         Device = 1 << 2,
     }
 
+    /// <summary>
+    ///  Flags which control the behavior of a material.
+    /// </summary>
     internal enum PxMaterialFlag : int
     {
+        /// <summary>
+        ///  If this flag is set, friction computations are always skipped between shapes with this material and any other shape.
+        /// </summary>
         DisableFriction = 1,
+        /// <summary>
+        ///  Whether to use strong friction.
+        ///  The difference between "normal" and "strong" friction is that the strong friction feature
+        ///  remembers the "friction error" between simulation steps. The friction is a force trying to
+        ///  hold objects in place (or slow them down) and this is handled in the solver. But since the
+        ///  solver is only an approximation, the result of the friction calculation can include a small
+        ///  "error" - e.g. a box resting on a slope should not move at all if the static friction is in
+        ///  action, but could slowly glide down the slope because of a small friction error in each
+        ///  simulation step. The strong friction counter-acts this by remembering the small error and
+        ///  taking it to account during the next simulation step.
+        ///
+        ///  However, in some cases the strong friction could cause problems, and this is why it is
+        ///  possible to disable the strong friction feature by setting this flag. One example is
+        ///  raycast vehicles that are sliding fast across the surface, but still need a precise
+        ///  steering behavior. It may be a good idea to reenable the strong friction when objects
+        ///  are coming to a rest, to prevent them from slowly creeping down inclines.
+        ///
+        ///  Note: This flag only has an effect if the PxMaterialFlag::eDISABLE_FRICTION bit is 0.
+        /// </summary>
         DisableStrongFriction = 2,
+        /// <summary>
+        ///  Whether to use the patch friction model.
+        ///  This flag only has an effect if PxFrictionType::ePATCH friction model is used.
+        ///
+        ///  When using the patch friction model, up to 2 friction anchors are generated per patch. As the number of friction anchors
+        ///  can be smaller than the number of contacts, the normal force is accumulated over all contacts and used to compute friction
+        ///  for all anchors. Where there are more than 2 anchors, this can produce frictional behavior that is too strong (approximately 2x as strong
+        ///  as analytical models suggest).
+        ///
+        ///  This flag causes the normal force to be distributed between the friction anchors such that the total amount of friction applied does not
+        ///  exceed the analytical results.
+        /// </summary>
         ImprovedPatchFriction = 4,
+        /// <summary>
+        ///  This flag has the effect of enabling an implicit spring model for the normal force computation.
+        /// </summary>
         CompliantContact = 8,
     }
 
@@ -18795,13 +19559,48 @@ namespace Physx
         CompliantContact = 1 << 3,
     }
 
+    /// <summary>
+    ///  Enumeration that determines the way in which two material properties will be combined to yield a friction or restitution coefficient for a collision.
+    ///
+    ///  When two actors come in contact with each other, they each have materials with various coefficients, but we only need a single set of coefficients for the pair.
+    ///
+    ///  Physics doesn't have any inherent combinations because the coefficients are determined empirically on a case by case
+    ///  basis. However, simulating this with a pairwise lookup table is often impractical.
+    ///
+    ///  For this reason the following combine behaviors are available:
+    ///
+    ///  eAVERAGE
+    ///  eMIN
+    ///  eMULTIPLY
+    ///  eMAX
+    ///
+    ///  The effective combine mode for the pair is maximum(material0.combineMode, material1.combineMode).
+    /// </summary>
     internal enum PxCombineMode : int
     {
+        /// <summary>
+        ///  Average: (a + b)/2
+        /// </summary>
         Average = 0,
+        /// <summary>
+        ///  Minimum: minimum(a,b)
+        /// </summary>
         Min = 1,
+        /// <summary>
+        ///  Multiply: a*b
+        /// </summary>
         Multiply = 2,
+        /// <summary>
+        ///  Maximum: maximum(a,b)
+        /// </summary>
         Max = 3,
+        /// <summary>
+        ///  This is not a valid combine mode, it is a sentinel to denote the number of possible values. We assert that the variable's value is smaller than this.
+        /// </summary>
         NValues = 4,
+        /// <summary>
+        ///  This is not a valid combine mode, it is to assure that the size of the enum type is big enough.
+        /// </summary>
         Pad32 = 2147483647,
     }
 
@@ -18832,13 +19631,47 @@ namespace Physx
         Reserved = 1 << 15,
     }
 
+    /// <summary>
+    ///  Classification of scene query hits (intersections).
+    ///
+    ///  - eNONE: Returning this hit type means that the hit should not be reported.
+    ///  - eBLOCK: For all raycast, sweep and overlap queries the nearest eBLOCK type hit will always be returned in PxHitCallback::block member.
+    ///  - eTOUCH: Whenever a raycast, sweep or overlap query was called with non-zero PxHitCallback::nbTouches and PxHitCallback::touches
+    ///  parameters, eTOUCH type hits that are closer or same distance (touchDistance
+    ///  &lt;
+    ///  = blockDistance condition)
+    ///  as the globally nearest eBLOCK type hit, will be reported.
+    ///  - For example, to record all hits from a raycast query, always return eTOUCH.
+    ///
+    ///  All hits in overlap() queries are treated as if the intersection distance were zero.
+    ///  This means the hits are unsorted and all eTOUCH hits are recorded by the callback even if an eBLOCK overlap hit was encountered.
+    ///  Even though all overlap() blocking hits have zero length, only one (arbitrary) eBLOCK overlap hit is recorded in PxHitCallback::block.
+    ///  All overlap() eTOUCH type hits are reported (zero touchDistance
+    ///  &lt;
+    ///  = zero blockDistance condition).
+    ///
+    ///  For raycast/sweep/overlap calls with zero touch buffer or PxHitCallback::nbTouches member,
+    ///  only the closest hit of type eBLOCK is returned. All eTOUCH hits are discarded.
+    /// </summary>
     internal enum PxQueryHitType : int
     {
+        /// <summary>
+        ///  the query should ignore this shape
+        /// </summary>
         None = 0,
+        /// <summary>
+        ///  a hit on the shape touches the intersection geometry of the query but does not block it
+        /// </summary>
         Touch = 1,
+        /// <summary>
+        ///  a hit on the shape blocks the query (does not block overlap queries)
+        /// </summary>
         Block = 2,
     }
 
+    /// <summary>
+    ///  Collection of flags providing a mechanism to lock motion along/around a specific axis.
+    /// </summary>
     internal enum PxRigidDynamicLockFlag : int
     {
         LockLinearX = 1,
@@ -18860,71 +19693,449 @@ namespace Physx
         LockAngularZ = 1 << 5,
     }
 
+    /// <summary>
+    ///  Pruning structure used to accelerate scene queries.
+    ///
+    ///  eNONE uses a simple data structure that consumes less memory than the alternatives,
+    ///  but generally has slower query performance.
+    ///
+    ///  eDYNAMIC_AABB_TREE usually provides the fastest queries. However there is a
+    ///  constant per-frame management cost associated with this structure. How much work should
+    ///  be done per frame can be tuned via the [`PxSceneQueryDesc::dynamicTreeRebuildRateHint`]
+    ///  parameter.
+    ///
+    ///  eSTATIC_AABB_TREE is typically used for static objects. It is the same as the
+    ///  dynamic AABB tree, without the per-frame overhead. This can be a good choice for static
+    ///  objects, if no static objects are added, moved or removed after the scene has been
+    ///  created. If there is no such guarantee (e.g. when streaming parts of the world in and out),
+    ///  then the dynamic version is a better choice even for static objects.
+    /// </summary>
     internal enum PxPruningStructureType : int
     {
+        /// <summary>
+        ///  Using a simple data structure
+        /// </summary>
         None = 0,
+        /// <summary>
+        ///  Using a dynamic AABB tree
+        /// </summary>
         DynamicAabbTree = 1,
+        /// <summary>
+        ///  Using a static AABB tree
+        /// </summary>
         StaticAabbTree = 2,
         Last = 3,
     }
 
+    /// <summary>
+    ///  Secondary pruning structure used for newly added objects in dynamic trees.
+    ///
+    ///  Dynamic trees (PxPruningStructureType::eDYNAMIC_AABB_TREE) are slowly rebuilt
+    ///  over several frames. A secondary pruning structure holds and manages objects
+    ///  added to the scene while this rebuild is in progress.
+    ///
+    ///  eNONE ignores newly added objects. This means that for a number of frames (roughly
+    ///  defined by PxSceneQueryDesc::dynamicTreeRebuildRateHint) newly added objects will
+    ///  be ignored by scene queries. This can be acceptable when streaming large worlds, e.g.
+    ///  when the objects added at the boundaries of the game world don't immediately need to be
+    ///  visible from scene queries (it would be equivalent to streaming that data in a few frames
+    ///  later). The advantage of this approach is that there is no CPU cost associated with
+    ///  inserting the new objects in the scene query data structures, and no extra runtime cost
+    ///  when performing queries.
+    ///
+    ///  eBUCKET uses a structure similar to PxPruningStructureType::eNONE. Insertion is fast but
+    ///  query cost can be high.
+    ///
+    ///  eINCREMENTAL uses an incremental AABB-tree, with no direct PxPruningStructureType equivalent.
+    ///  Query time is fast but insertion cost can be high.
+    ///
+    ///  eBVH uses a PxBVH structure. This usually offers the best overall performance.
+    /// </summary>
     internal enum PxDynamicTreeSecondaryPruner : int
     {
+        /// <summary>
+        ///  no secondary pruner, new objects aren't visible to SQ for a few frames
+        /// </summary>
         None = 0,
+        /// <summary>
+        ///  bucket-based secondary pruner, faster updates, slower query time
+        /// </summary>
         Bucket = 1,
+        /// <summary>
+        ///  incremental-BVH secondary pruner, faster query time, slower updates
+        /// </summary>
         Incremental = 2,
+        /// <summary>
+        ///  PxBVH-based secondary pruner, good overall performance
+        /// </summary>
         Bvh = 3,
         Last = 4,
     }
 
+    /// <summary>
+    ///  Scene query update mode
+    ///
+    ///  This enum controls what work is done when the scene query system is updated. The updates traditionally happen when PxScene::fetchResults
+    ///  is called. This function then calls PxSceneQuerySystem::finalizeUpdates, where the update mode is used.
+    ///
+    ///  fetchResults/finalizeUpdates will sync changed bounds during simulation and update the scene query bounds in pruners, this work is mandatory.
+    ///
+    ///  eBUILD_ENABLED_COMMIT_ENABLED does allow to execute the new AABB tree build step during fetchResults/finalizeUpdates, additionally
+    ///  the pruner commit is called where any changes are applied. During commit PhysX refits the dynamic scene query tree and if a new tree
+    ///  was built and the build finished the tree is swapped with current AABB tree.
+    ///
+    ///  eBUILD_ENABLED_COMMIT_DISABLED does allow to execute the new AABB tree build step during fetchResults/finalizeUpdates. Pruner commit
+    ///  is not called, this means that refit will then occur during the first scene query following fetchResults/finalizeUpdates, or may be forced
+    ///  by the method PxScene::flushQueryUpdates() / PxSceneQuerySystemBase::flushUpdates().
+    ///
+    ///  eBUILD_DISABLED_COMMIT_DISABLED no further scene query work is executed. The scene queries update needs to be called manually, see
+    ///  PxScene::sceneQueriesUpdate (see that function's doc for the equivalent PxSceneQuerySystem sequence). It is recommended to call
+    ///  PxScene::sceneQueriesUpdate right after fetchResults/finalizeUpdates as the pruning structures are not updated.
+    /// </summary>
     internal enum PxSceneQueryUpdateMode : int
     {
+        /// <summary>
+        ///  Both scene query build and commit are executed.
+        /// </summary>
         BuildEnabledCommitEnabled = 0,
+        /// <summary>
+        ///  Scene query build only is executed.
+        /// </summary>
         BuildEnabledCommitDisabled = 1,
+        /// <summary>
+        ///  No work is done, no update of scene queries
+        /// </summary>
         BuildDisabledCommitDisabled = 2,
     }
 
+    /// <summary>
+    ///  Broad phase algorithm used in the simulation
+    ///
+    ///  eSAP is a good generic choice with great performance when many objects are sleeping. Performance
+    ///  can degrade significantly though, when all objects are moving, or when large numbers of objects
+    ///  are added to or removed from the broad phase. This algorithm does not need world bounds to be
+    ///  defined in order to work.
+    ///
+    ///  eMBP is an alternative broad phase algorithm that does not suffer from the same performance
+    ///  issues as eSAP when all objects are moving or when inserting large numbers of objects. However
+    ///  its generic performance when many objects are sleeping might be inferior to eSAP, and it requires
+    ///  users to define world bounds in order to work.
+    ///
+    ///  eABP is a revisited implementation of MBP, which automatically manages broad-phase regions.
+    ///  It offers the convenience of eSAP (no need to define world bounds or regions) and the performance
+    ///  of eMBP when a lot of objects are moving. While eSAP can remain faster when most objects are
+    ///  sleeping and eMBP can remain faster when it uses a large number of properly-defined regions,
+    ///  eABP often gives the best performance on average and the best memory usage.
+    ///
+    ///  ePABP is a parallel implementation of ABP. It can often be the fastest (CPU) broadphase, but it
+    ///  can use more memory than ABP.
+    ///
+    ///  eGPU is a GPU implementation of the incremental sweep and prune approach. Additionally, it uses a ABP-style
+    ///  initial pair generation approach to avoid large spikes when inserting shapes. It not only has the advantage
+    ///  of traditional SAP approch which is good for when many objects are sleeping, but due to being fully parallel,
+    ///  it also is great when lots of shapes are moving or for runtime pair insertion and removal. It can become a
+    ///  performance bottleneck if there are a very large number of shapes roughly projecting to the same values
+    ///  on a given axis. If the scene has a very large number of shapes in an actor, e.g. a humanoid, it is recommended
+    ///  to use an aggregate to represent multi-shape or multi-body actors to minimize stress placed on the broad phase.
+    /// </summary>
     internal enum PxBroadPhaseType : int
     {
+        /// <summary>
+        ///  3-axes sweep-and-prune
+        /// </summary>
         Sap = 0,
+        /// <summary>
+        ///  Multi box pruning
+        /// </summary>
         Mbp = 1,
+        /// <summary>
+        ///  Automatic box pruning
+        /// </summary>
         Abp = 2,
+        /// <summary>
+        ///  Parallel automatic box pruning
+        /// </summary>
         Pabp = 3,
+        /// <summary>
+        ///  GPU broad phase
+        /// </summary>
         Gpu = 4,
         Last = 5,
     }
 
+    /// <summary>
+    ///  Enum for selecting the friction algorithm used for simulation.
+    ///
+    ///  [`PxFrictionType::ePATCH`] selects the patch friction model which typically leads to the most stable results at low solver iteration counts and is also quite inexpensive, as it uses only
+    ///  up to four scalar solver constraints per pair of touching objects.  The patch friction model is the same basic strong friction algorithm as PhysX 3.2 and before.
+    ///
+    ///  [`PxFrictionType::eONE_DIRECTIONAL`] is a simplification of the Coulomb friction model, in which the friction for a given point of contact is applied in the alternating tangent directions of
+    ///  the contact's normal.  This simplification allows us to reduce the number of iterations required for convergence but is not as accurate as the two directional model.
+    ///
+    ///  [`PxFrictionType::eTWO_DIRECTIONAL`] is identical to the one directional model, but it applies friction in both tangent directions simultaneously.  This hurts convergence a bit so it
+    ///  requires more solver iterations, but is more accurate.  Like the one directional model, it is applied at every contact point, which makes it potentially more expensive
+    ///  than patch friction for scenarios with many contact points.
+    ///
+    ///  [`PxFrictionType::eFRICTION_COUNT`] is the total numer of friction models supported by the SDK.
+    /// </summary>
     internal enum PxFrictionType : int
     {
+        /// <summary>
+        ///  Select default patch-friction model.
+        /// </summary>
         Patch = 0,
+        /// <summary>
+        ///  Select one directional per-contact friction model.
+        /// </summary>
         OneDirectional = 1,
+        /// <summary>
+        ///  Select two directional per-contact friction model.
+        /// </summary>
         TwoDirectional = 2,
+        /// <summary>
+        ///  The total number of friction models supported by the SDK.
+        /// </summary>
         FrictionCount = 3,
     }
 
+    /// <summary>
+    ///  Enum for selecting the type of solver used for the simulation.
+    ///
+    ///  [`PxSolverType::ePGS`] selects the iterative sequential impulse solver. This is the same kind of solver used in PhysX 3.4 and earlier releases.
+    ///
+    ///  [`PxSolverType::eTGS`] selects a non linear iterative solver. This kind of solver can lead to improved convergence and handle large mass ratios, long chains and jointed systems better. It is slightly more expensive than the default solver and can introduce more energy to correct joint and contact errors.
+    /// </summary>
     internal enum PxSolverType : int
     {
+        /// <summary>
+        ///  Projected Gauss-Seidel iterative solver
+        /// </summary>
         Pgs = 0,
+        /// <summary>
+        ///  Default Temporal Gauss-Seidel solver
+        /// </summary>
         Tgs = 1,
     }
 
+    /// <summary>
+    ///  flags for configuring properties of the scene
+    /// </summary>
     internal enum PxSceneFlag : int
     {
+        /// <summary>
+        ///  Enable Active Actors Notification.
+        ///
+        ///  This flag enables the Active Actor Notification feature for a scene.  This
+        ///  feature defaults to disabled.  When disabled, the function
+        ///  PxScene::getActiveActors() will always return a NULL list.
+        ///
+        ///  There may be a performance penalty for enabling the Active Actor Notification, hence this flag should
+        ///  only be enabled if the application intends to use the feature.
+        ///
+        ///  Default:
+        ///  False
+        /// </summary>
         EnableActiveActors = 1,
+        /// <summary>
+        ///  Enables a second broad phase check after integration that makes it possible to prevent objects from tunneling through eachother.
+        ///
+        ///  PxPairFlag::eDETECT_CCD_CONTACT requires this flag to be specified.
+        ///
+        ///  For this feature to be effective for bodies that can move at a significant velocity, the user should raise the flag PxRigidBodyFlag::eENABLE_CCD for them.
+        ///
+        ///  This flag is not mutable, and must be set in PxSceneDesc at scene creation.
+        ///
+        ///  Default:
+        ///  False
+        /// </summary>
         EnableCcd = 2,
+        /// <summary>
+        ///  Enables a simplified swept integration strategy, which sacrifices some accuracy for improved performance.
+        ///
+        ///  This simplified swept integration approach makes certain assumptions about the motion of objects that are not made when using a full swept integration.
+        ///  These assumptions usually hold but there are cases where they could result in incorrect behavior between a set of fast-moving rigid bodies. A key issue is that
+        ///  fast-moving dynamic objects may tunnel through each-other after a rebound. This will not happen if this mode is disabled. However, this approach will be potentially
+        ///  faster than a full swept integration because it will perform significantly fewer sweeps in non-trivial scenes involving many fast-moving objects. This approach
+        ///  should successfully resist objects passing through the static environment.
+        ///
+        ///  PxPairFlag::eDETECT_CCD_CONTACT requires this flag to be specified.
+        ///
+        ///  This scene flag requires eENABLE_CCD to be enabled as well. If it is not, this scene flag will do nothing.
+        ///
+        ///  For this feature to be effective for bodies that can move at a significant velocity, the user should raise the flag PxRigidBodyFlag::eENABLE_CCD for them.
+        ///
+        ///  This flag is not mutable, and must be set in PxSceneDesc at scene creation.
+        ///
+        ///  Default:
+        ///  False
+        /// </summary>
         DisableCcdResweep = 4,
+        /// <summary>
+        ///  Enable GJK-based distance collision detection system.
+        ///
+        ///  This flag is not mutable, and must be set in PxSceneDesc at scene creation.
+        ///
+        ///  Default:
+        ///  true
+        /// </summary>
         EnablePcm = 64,
+        /// <summary>
+        ///  Disable contact report buffer resize. Once the contact buffer is full, the rest of the contact reports will
+        ///  not be buffered and sent.
+        ///
+        ///  This flag is not mutable, and must be set in PxSceneDesc at scene creation.
+        ///
+        ///  Default:
+        ///  false
+        /// </summary>
         DisableContactReportBufferResize = 128,
+        /// <summary>
+        ///  Disable contact cache.
+        ///
+        ///  Contact caches are used internally to provide faster contact generation. You can disable all contact caches
+        ///  if memory usage for this feature becomes too high.
+        ///
+        ///  This flag is not mutable, and must be set in PxSceneDesc at scene creation.
+        ///
+        ///  Default:
+        ///  false
+        /// </summary>
         DisableContactCache = 256,
+        /// <summary>
+        ///  Require scene-level locking
+        ///
+        ///  When set to true this requires that threads accessing the PxScene use the
+        ///  multi-threaded lock methods.
+        ///
+        ///  This flag is not mutable, and must be set in PxSceneDesc at scene creation.
+        ///
+        ///  Default:
+        ///  false
+        /// </summary>
         RequireRwLock = 512,
+        /// <summary>
+        ///  Enables additional stabilization pass in solver
+        ///
+        ///  When set to true, this enables additional stabilization processing to improve that stability of complex interactions between large numbers of bodies.
+        ///
+        ///  Note that this flag is not mutable and must be set in PxSceneDesc at scene creation. Also, this is an experimental feature which does result in some loss of momentum.
+        /// </summary>
         EnableStabilization = 1024,
+        /// <summary>
+        ///  Enables average points in contact manifolds
+        ///
+        ///  When set to true, this enables additional contacts to be generated per manifold to represent the average point in a manifold. This can stabilize stacking when only a small
+        ///  number of solver iterations is used.
+        ///
+        ///  Note that this flag is not mutable and must be set in PxSceneDesc at scene creation.
+        /// </summary>
         EnableAveragePoint = 2048,
+        /// <summary>
+        ///  Do not report kinematics in list of active actors.
+        ///
+        ///  Since the target pose for kinematics is set by the user, an application can track the activity state directly and use
+        ///  this flag to avoid that kinematics get added to the list of active actors.
+        ///
+        ///  This flag has only an effect in combination with eENABLE_ACTIVE_ACTORS.
+        ///
+        ///  Default:
+        ///  false
+        /// </summary>
         ExcludeKinematicsFromActiveActors = 4096,
+        /// <summary>
+        ///  Do not report kinematics in list of active actors.
+        ///
+        ///  Since the target pose for kinematics is set by the user, an application can track the activity state directly and use
+        ///  this flag to avoid that kinematics get added to the list of active actors.
+        ///
+        ///  This flag has only an effect in combination with eENABLE_ACTIVE_ACTORS.
+        ///
+        ///  Default:
+        ///  false
+        /// </summary>
         EnableGpuDynamics = 8192,
+        /// <summary>
+        ///  Provides improved determinism at the expense of performance.
+        ///
+        ///  By default, PhysX provides limited determinism guarantees. Specifically, PhysX guarantees that the exact scene (same actors created in the same order) and simulated using the same
+        ///  time-stepping scheme should provide the exact same behaviour.
+        ///
+        ///  However, if additional actors are added to the simulation, this can affect the behaviour of the existing actors in the simulation, even if the set of new actors do not interact with
+        ///  the existing actors.
+        ///
+        ///  This flag provides an additional level of determinism that guarantees that the simulation will not change if additional actors are added to the simulation, provided those actors do not interfere
+        ///  with the existing actors in the scene. Determinism is only guaranteed if the actors are inserted in a consistent order each run in a newly-created scene and simulated using a consistent time-stepping
+        ///  scheme.
+        ///
+        ///  Note that this flag is not mutable and must be set at scene creation.
+        ///
+        ///  Note that enabling this flag can have a negative impact on performance.
+        ///
+        ///  Note that this feature is not currently supported on GPU.
+        ///
+        ///  Default
+        ///  false
+        /// </summary>
         EnableEnhancedDeterminism = 16384,
+        /// <summary>
+        ///  Controls processing friction in all solver iterations
+        ///
+        ///  By default, PhysX processes friction only in the final 3 position iterations, and all velocity
+        ///  iterations. This flag enables friction processing in all position and velocity iterations.
+        ///
+        ///  The default behaviour provides a good trade-off between performance and stability and is aimed
+        ///  primarily at game development.
+        ///
+        ///  When simulating more complex frictional behaviour, such as grasping of complex geometries with
+        ///  a robotic manipulator, better results can be achieved by enabling friction in all solver iterations.
+        ///
+        ///  This flag only has effect with the default solver. The TGS solver always performs friction per-iteration.
+        /// </summary>
         EnableFrictionEveryIteration = 32768,
+        /// <summary>
+        ///  Controls processing friction in all solver iterations
+        ///
+        ///  By default, PhysX processes friction only in the final 3 position iterations, and all velocity
+        ///  iterations. This flag enables friction processing in all position and velocity iterations.
+        ///
+        ///  The default behaviour provides a good trade-off between performance and stability and is aimed
+        ///  primarily at game development.
+        ///
+        ///  When simulating more complex frictional behaviour, such as grasping of complex geometries with
+        ///  a robotic manipulator, better results can be achieved by enabling friction in all solver iterations.
+        ///
+        ///  This flag only has effect with the default solver. The TGS solver always performs friction per-iteration.
+        /// </summary>
         SuppressReadback = 65536,
+        /// <summary>
+        ///  Controls processing friction in all solver iterations
+        ///
+        ///  By default, PhysX processes friction only in the final 3 position iterations, and all velocity
+        ///  iterations. This flag enables friction processing in all position and velocity iterations.
+        ///
+        ///  The default behaviour provides a good trade-off between performance and stability and is aimed
+        ///  primarily at game development.
+        ///
+        ///  When simulating more complex frictional behaviour, such as grasping of complex geometries with
+        ///  a robotic manipulator, better results can be achieved by enabling friction in all solver iterations.
+        ///
+        ///  This flag only has effect with the default solver. The TGS solver always performs friction per-iteration.
+        /// </summary>
         ForceReadback = 131072,
+        /// <summary>
+        ///  Controls processing friction in all solver iterations
+        ///
+        ///  By default, PhysX processes friction only in the final 3 position iterations, and all velocity
+        ///  iterations. This flag enables friction processing in all position and velocity iterations.
+        ///
+        ///  The default behaviour provides a good trade-off between performance and stability and is aimed
+        ///  primarily at game development.
+        ///
+        ///  When simulating more complex frictional behaviour, such as grasping of complex geometries with
+        ///  a robotic manipulator, better results can be achieved by enabling friction in all solver iterations.
+        ///
+        ///  This flag only has effect with the default solver. The TGS solver always performs friction per-iteration.
+        /// </summary>
         MutableFlags = 69633,
     }
 
@@ -18949,59 +20160,232 @@ namespace Physx
         MutableFlags = EnableActiveActors | ExcludeKinematicsFromActiveActors | SuppressReadback,
     }
 
+    /// <summary>
+    ///  Debug visualization parameters.
+    ///
+    ///  [`PxVisualizationParameter::eSCALE`] is the master switch for enabling visualization, please read the corresponding documentation
+    ///  for further details.
+    /// </summary>
     internal enum PxVisualizationParameter : int
     {
+        /// <summary>
+        ///  This overall visualization scale gets multiplied with the individual scales. Setting to zero ignores all visualizations. Default is 0.
+        ///
+        ///  The below settings permit the debug visualization of various simulation properties.
+        ///  The setting is either zero, in which case the property is not drawn. Otherwise it is a scaling factor
+        ///  that determines the size of the visualization widgets.
+        ///
+        ///  Only objects for which visualization is turned on using setFlag(eVISUALIZATION) are visualized (see [`PxActorFlag::eVISUALIZATION`], #PxShapeFlag::eVISUALIZATION, ...).
+        ///  Contacts are visualized if they involve a body which is being visualized.
+        ///  Default is 0.
+        ///
+        ///  Notes:
+        ///  - to see any visualization, you have to set PxVisualizationParameter::eSCALE to nonzero first.
+        ///  - the scale factor has been introduced because it's difficult (if not impossible) to come up with a
+        ///  good scale for 3D vectors. Normals are normalized and their length is always 1. But it doesn't mean
+        ///  we should render a line of length 1. Depending on your objects/scene, this might be completely invisible
+        ///  or extremely huge. That's why the scale factor is here, to let you tune the length until it's ok in
+        ///  your scene.
+        ///  - however, things like collision shapes aren't ambiguous. They are clearly defined for example by the
+        ///  triangles
+        ///  &amp;
+        ///  polygons themselves, and there's no point in scaling that. So the visualization widgets
+        ///  are only scaled when it makes sense.
+        ///
+        ///  Range:
+        ///  [0, PX_MAX_F32)
+        ///  Default:
+        ///  0
+        /// </summary>
         Scale = 0,
+        /// <summary>
+        ///  Visualize the world axes.
+        /// </summary>
         WorldAxes = 1,
+        /// <summary>
+        ///  Visualize a bodies axes.
+        /// </summary>
         BodyAxes = 2,
+        /// <summary>
+        ///  Visualize a body's mass axes.
+        ///
+        ///  This visualization is also useful for visualizing the sleep state of bodies. Sleeping bodies are drawn in
+        ///  black, while awake bodies are drawn in white. If the body is sleeping and part of a sleeping group, it is
+        ///  drawn in red.
+        /// </summary>
         BodyMassAxes = 3,
+        /// <summary>
+        ///  Visualize the bodies linear velocity.
+        /// </summary>
         BodyLinVelocity = 4,
+        /// <summary>
+        ///  Visualize the bodies angular velocity.
+        /// </summary>
         BodyAngVelocity = 5,
+        /// <summary>
+        ///  Visualize contact points. Will enable contact information.
+        /// </summary>
         ContactPoint = 6,
+        /// <summary>
+        ///  Visualize contact normals. Will enable contact information.
+        /// </summary>
         ContactNormal = 7,
+        /// <summary>
+        ///  Visualize contact errors. Will enable contact information.
+        /// </summary>
         ContactError = 8,
+        /// <summary>
+        ///  Visualize Contact forces. Will enable contact information.
+        /// </summary>
         ContactForce = 9,
+        /// <summary>
+        ///  Visualize actor axes.
+        /// </summary>
         ActorAxes = 10,
+        /// <summary>
+        ///  Visualize bounds (AABBs in world space)
+        /// </summary>
         CollisionAabbs = 11,
+        /// <summary>
+        ///  Shape visualization
+        /// </summary>
         CollisionShapes = 12,
+        /// <summary>
+        ///  Shape axis visualization
+        /// </summary>
         CollisionAxes = 13,
+        /// <summary>
+        ///  Compound visualization (compound AABBs in world space)
+        /// </summary>
         CollisionCompounds = 14,
+        /// <summary>
+        ///  Mesh
+        ///  &amp;
+        ///  convex face normals
+        /// </summary>
         CollisionFnormals = 15,
+        /// <summary>
+        ///  Active edges for meshes
+        /// </summary>
         CollisionEdges = 16,
+        /// <summary>
+        ///  Static pruning structures
+        /// </summary>
         CollisionStatic = 17,
+        /// <summary>
+        ///  Dynamic pruning structures
+        /// </summary>
         CollisionDynamic = 18,
+        /// <summary>
+        ///  Joint local axes
+        /// </summary>
         JointLocalFrames = 19,
+        /// <summary>
+        ///  Joint limits
+        /// </summary>
         JointLimits = 20,
+        /// <summary>
+        ///  Visualize culling box
+        /// </summary>
         CullBox = 21,
+        /// <summary>
+        ///  MBP regions
+        /// </summary>
         MbpRegions = 22,
+        /// <summary>
+        ///  Renders the simulation mesh instead of the collision mesh (only available for tetmeshes)
+        /// </summary>
         SimulationMesh = 23,
+        /// <summary>
+        ///  Renders the SDF of a mesh instead of the collision mesh (only available for triangle meshes with SDFs)
+        /// </summary>
         Sdf = 24,
+        /// <summary>
+        ///  This is not a parameter, it just records the current number of parameters (as maximum(PxVisualizationParameter)+1) for use in loops.
+        /// </summary>
         NumValues = 25,
+        /// <summary>
+        ///  This is not a parameter, it just records the current number of parameters (as maximum(PxVisualizationParameter)+1) for use in loops.
+        /// </summary>
         ForceDword = 2147483647,
     }
 
+    /// <summary>
+    ///  Different types of rigid body collision pair statistics.
+    /// </summary>
     internal enum RbPairStatsType : int
     {
+        /// <summary>
+        ///  Shape pairs processed as discrete contact pairs for the current simulation step.
+        /// </summary>
         DiscreteContactPairs = 0,
+        /// <summary>
+        ///  Shape pairs processed as swept integration pairs for the current simulation step.
+        ///
+        ///  Counts the pairs for which special CCD (continuous collision detection) work was actually done and NOT the number of pairs which were configured for CCD.
+        ///  Furthermore, there can be multiple CCD passes and all processed pairs of all passes are summed up, hence the number can be larger than the amount of pairs which have been configured for CCD.
+        /// </summary>
         CcdPairs = 1,
+        /// <summary>
+        ///  Shape pairs processed with user contact modification enabled for the current simulation step.
+        /// </summary>
         ModifiedContactPairs = 2,
+        /// <summary>
+        ///  Trigger shape pairs processed for the current simulation step.
+        /// </summary>
         TriggerPairs = 3,
     }
 
+    /// <summary>
+    ///  These flags determine what data is read or written to the gpu softbody.
+    /// </summary>
     internal enum PxSoftBodyDataFlag : int
     {
+        /// <summary>
+        ///  The collision mesh tetrahedron indices (quadruples of int32)
+        /// </summary>
         TetIndices = 0,
+        /// <summary>
+        ///  The collision mesh cauchy stress tensors (float 3x3 matrices)
+        /// </summary>
         TetStress = 1,
+        /// <summary>
+        ///  The collision mesh tetrahedron von Mises stress (float scalar)
+        /// </summary>
         TetStresscoeff = 2,
+        /// <summary>
+        ///  The collision mesh tetrahedron rest poses (float 3x3 matrices)
+        /// </summary>
         TetRestPoses = 3,
+        /// <summary>
+        ///  The collision mesh tetrahedron orientations (quaternions, quadruples of float)
+        /// </summary>
         TetRotations = 4,
+        /// <summary>
+        ///  The collision mesh vertex positions and their inverted mass in the 4th component (quadruples of float)
+        /// </summary>
         TetPositionInvMass = 5,
+        /// <summary>
+        ///  The simulation mesh tetrahedron indices (quadruples of int32)
+        /// </summary>
         SimTetIndices = 6,
+        /// <summary>
+        ///  The simulation mesh vertex velocities and their inverted mass in the 4th component (quadruples of float)
+        /// </summary>
         SimVelocityInvMass = 7,
+        /// <summary>
+        ///  The simulation mesh vertex positions and their inverted mass in the 4th component (quadruples of float)
+        /// </summary>
         SimPositionInvMass = 8,
+        /// <summary>
+        ///  The simulation mesh kinematic target positions
+        /// </summary>
         SimKinematicTarget = 9,
     }
 
+    /// <summary>
+    ///  Identifies each type of information for retrieving from actor.
+    /// </summary>
     internal enum PxActorCacheFlag : int
     {
         ActorData = 1,
@@ -19009,10 +20393,19 @@ namespace Physx
         Torque = 8,
     }
 
+    /// <summary>
+    ///  PVD scene Flags. They are disabled by default, and only works if PxPvdInstrumentationFlag::eDEBUG is set.
+    /// </summary>
     internal enum PxPvdSceneFlag : int
     {
         TransmitContacts = 1,
+        /// <summary>
+        ///  Transmits contact stream to PVD.
+        /// </summary>
         TransmitScenequeries = 2,
+        /// <summary>
+        ///  Transmits scene query stream to PVD.
+        /// </summary>
         TransmitConstraints = 4,
     }
 
@@ -19057,16 +20450,39 @@ namespace Physx
         NextFree = 1 << 2,
     }
 
+    /// <summary>
+    ///  The type of controller, eg box, sphere or capsule.
+    /// </summary>
     internal enum PxControllerShapeType : int
     {
+        /// <summary>
+        ///  A box controller.
+        /// </summary>
         Box = 0,
+        /// <summary>
+        ///  A capsule controller
+        /// </summary>
         Capsule = 1,
+        /// <summary>
+        ///  A capsule controller
+        /// </summary>
         ForceDword = 2147483647,
     }
 
+    /// <summary>
+    ///  specifies how a CCT interacts with non-walkable parts.
+    ///
+    ///  This is only used when slopeLimit is non zero. It is currently enabled for static actors only, and not supported for spheres or capsules.
+    /// </summary>
     internal enum PxControllerNonWalkableMode : int
     {
+        /// <summary>
+        ///  Stops character from climbing up non-walkable slopes, but doesn't move it otherwise
+        /// </summary>
         PreventClimbing = 0,
+        /// <summary>
+        ///  Stops character from climbing up non-walkable slopes, and forces it to slide down those slopes
+        /// </summary>
         PreventClimbingAndForceSliding = 1,
     }
 
@@ -19080,7 +20496,13 @@ namespace Physx
 
     internal enum PxCapsuleClimbingMode : int
     {
+        /// <summary>
+        ///  Standard mode, let the capsule climb over surfaces according to impact normal
+        /// </summary>
         Easy = 0,
+        /// <summary>
+        ///  Constrained mode, try to limit climbing according to the step offset
+        /// </summary>
         Constrained = 1,
         Last = 2,
     }
@@ -19102,10 +20524,22 @@ namespace Physx
         All = TemporalBv | CachedBv | Obstacles,
     }
 
+    /// <summary>
+    ///  Defines the number of bits per subgrid pixel
+    /// </summary>
     internal enum PxSdfBitsPerSubgridPixel : int
     {
+        /// <summary>
+        ///  8 bit per subgrid pixel (values will be stored as normalized integers)
+        /// </summary>
         E8BitPerPixel = 1,
+        /// <summary>
+        ///  16 bit per subgrid pixel (values will be stored as normalized integers)
+        /// </summary>
         E16BitPerPixel = 2,
+        /// <summary>
+        ///  32 bit per subgrid pixel (values will be stored as floats in world scale units)
+        /// </summary>
         E32BitPerPixel = 4,
     }
 
@@ -19123,31 +20557,79 @@ namespace Physx
         ShiftVertices = 1 << 8,
     }
 
+    /// <summary>
+    ///  Desired build strategy for PxMeshMidPhase::eBVH34
+    /// </summary>
     internal enum PxBVH34BuildStrategy : int
     {
+        /// <summary>
+        ///  Fast build strategy. Fast build speed, good runtime performance in most cases. Recommended for runtime mesh cooking.
+        /// </summary>
         Fast = 0,
+        /// <summary>
+        ///  Default build strategy. Medium build speed, good runtime performance in all cases.
+        /// </summary>
         Default = 1,
+        /// <summary>
+        ///  SAH build strategy. Slower builds, slightly improved runtime performance in some cases.
+        /// </summary>
         Sah = 2,
         Last = 3,
     }
 
+    /// <summary>
+    ///  Result from convex cooking.
+    /// </summary>
     internal enum PxConvexMeshCookingResult : int
     {
+        /// <summary>
+        ///  Convex mesh cooking succeeded.
+        /// </summary>
         Success = 0,
+        /// <summary>
+        ///  Convex mesh cooking failed, algorithm couldn't find 4 initial vertices without a small triangle.
+        /// </summary>
         ZeroAreaTestFailed = 1,
+        /// <summary>
+        ///  Convex mesh cooking succeeded, but the algorithm has reached the 255 polygons limit.
+        ///  The produced hull does not contain all input vertices. Try to simplify the input vertices
+        ///  or try to use the eINFLATE_CONVEX or the eQUANTIZE_INPUT flags.
+        /// </summary>
         PolygonsLimitReached = 2,
+        /// <summary>
+        ///  Something unrecoverable happened. Check the error stream to find out what.
+        /// </summary>
         Failure = 3,
     }
 
+    /// <summary>
+    ///  Enumeration for convex mesh cooking algorithms.
+    /// </summary>
     internal enum PxConvexMeshCookingType : int
     {
+        /// <summary>
+        ///  The Quickhull algorithm constructs the hull from the given input points. The resulting hull
+        ///  will only contain a subset of the input points.
+        /// </summary>
         Quickhull = 0,
     }
 
+    /// <summary>
+    ///  Result from triangle mesh cooking
+    /// </summary>
     internal enum PxTriangleMeshCookingResult : int
     {
+        /// <summary>
+        ///  Everything is A-OK.
+        /// </summary>
         Success = 0,
+        /// <summary>
+        ///  a triangle is too large for well-conditioned results. Tessellate the mesh for better behavior, see the user guide section on cooking for more details.
+        /// </summary>
         LargeTriangle = 1,
+        /// <summary>
+        ///  Something unrecoverable happened. Check the error stream to find out what.
+        /// </summary>
         Failure = 2,
     }
 
@@ -19162,6 +20644,9 @@ namespace Physx
         EnableInertia = 1 << 5,
     }
 
+    /// <summary>
+    ///  an enumeration for specifying one or other of the actors referenced by a joint
+    /// </summary>
     internal enum PxJointActorIndex : int
     {
         Actor0 = 0,
@@ -19169,6 +20654,9 @@ namespace Physx
         Count = 2,
     }
 
+    /// <summary>
+    ///  flags for configuring the drive of a PxDistanceJoint
+    /// </summary>
     internal enum PxDistanceJointFlag : int
     {
         MaxDistanceEnabled = 2,
@@ -19184,6 +20672,9 @@ namespace Physx
         SpringEnabled = 1 << 3,
     }
 
+    /// <summary>
+    ///  Flags specific to the prismatic joint.
+    /// </summary>
     internal enum PxPrismaticJointFlag : int
     {
         LimitEnabled = 2,
@@ -19195,10 +20686,22 @@ namespace Physx
         LimitEnabled = 1 << 1,
     }
 
+    /// <summary>
+    ///  Flags specific to the Revolute Joint.
+    /// </summary>
     internal enum PxRevoluteJointFlag : int
     {
+        /// <summary>
+        ///  enable the limit
+        /// </summary>
         LimitEnabled = 1,
+        /// <summary>
+        ///  enable the drive
+        /// </summary>
         DriveEnabled = 2,
+        /// <summary>
+        ///  if the existing velocity is beyond the drive velocity, do not add force
+        /// </summary>
         DriveFreespin = 4,
     }
 
@@ -19210,8 +20713,14 @@ namespace Physx
         DriveFreespin = 1 << 2,
     }
 
+    /// <summary>
+    ///  Flags specific to the spherical joint.
+    /// </summary>
     internal enum PxSphericalJointFlag : int
     {
+        /// <summary>
+        ///  the cone limit for the spherical joint is enabled
+        /// </summary>
         LimitEnabled = 2,
     }
 
@@ -19221,31 +20730,95 @@ namespace Physx
         LimitEnabled = 1 << 1,
     }
 
+    /// <summary>
+    ///  Used to specify one of the degrees of freedom of  a D6 joint.
+    /// </summary>
     internal enum PxD6Axis : int
     {
+        /// <summary>
+        ///  motion along the X axis
+        /// </summary>
         X = 0,
+        /// <summary>
+        ///  motion along the Y axis
+        /// </summary>
         Y = 1,
+        /// <summary>
+        ///  motion along the Z axis
+        /// </summary>
         Z = 2,
+        /// <summary>
+        ///  motion around the X axis
+        /// </summary>
         Twist = 3,
+        /// <summary>
+        ///  motion around the Y axis
+        /// </summary>
         Swing1 = 4,
+        /// <summary>
+        ///  motion around the Z axis
+        /// </summary>
         Swing2 = 5,
         Count = 6,
     }
 
+    /// <summary>
+    ///  Used to specify the range of motions allowed for a degree of freedom in a D6 joint.
+    /// </summary>
     internal enum PxD6Motion : int
     {
+        /// <summary>
+        ///  The DOF is locked, it does not allow relative motion.
+        /// </summary>
         Locked = 0,
+        /// <summary>
+        ///  The DOF is limited, it only allows motion within a specific range.
+        /// </summary>
         Limited = 1,
+        /// <summary>
+        ///  The DOF is free and has its full range of motion.
+        /// </summary>
         Free = 2,
     }
 
+    /// <summary>
+    ///  Used to specify which axes of a D6 joint are driven.
+    ///
+    ///  Each drive is an implicit force-limited damped spring:
+    ///
+    ///  force = spring * (target position - position) + damping * (targetVelocity - velocity)
+    ///
+    ///  Alternatively, the spring may be configured to generate a specified acceleration instead of a force.
+    ///
+    ///  A linear axis is affected by drive only if the corresponding drive flag is set. There are two possible models
+    ///  for angular drive: swing/twist, which may be used to drive one or more angular degrees of freedom, or slerp,
+    ///  which may only be used to drive all three angular degrees simultaneously.
+    /// </summary>
     internal enum PxD6Drive : int
     {
+        /// <summary>
+        ///  drive along the X-axis
+        /// </summary>
         X = 0,
+        /// <summary>
+        ///  drive along the Y-axis
+        /// </summary>
         Y = 1,
+        /// <summary>
+        ///  drive along the Z-axis
+        /// </summary>
         Z = 2,
+        /// <summary>
+        ///  drive of displacement from the X-axis
+        /// </summary>
         Swing = 3,
+        /// <summary>
+        ///  drive of the displacement around the X-axis
+        /// </summary>
         Twist = 4,
+        /// <summary>
+        ///  drive of all three angular degrees along a SLERP-path
+        /// </summary>
         Slerp = 5,
         Count = 6,
     }
@@ -19256,6 +20829,9 @@ namespace Physx
         Acceleration = 1 << 0,
     }
 
+    /// <summary>
+    ///  Collision filtering operations.
+    /// </summary>
     internal enum PxFilterOp : int
     {
         PxFilteropAnd = 0,
@@ -19267,6 +20843,14 @@ namespace Physx
         PxFilteropSwapAnd = 6,
     }
 
+    /// <summary>
+    ///  If a thread ends up waiting for work it will find itself in a spin-wait loop until work becomes available.
+    ///  Three strategies are available to limit wasted cycles.
+    ///  The strategies are as follows:
+    ///  a) wait until a work task signals the end of the spin-wait period.
+    ///  b) yield the thread by providing a hint to reschedule thread execution, thereby allowing other threads to run.
+    ///  c) yield the processor by informing it that it is waiting for work and requesting it to more efficiently use compute resources.
+    /// </summary>
     internal enum PxDefaultCpuDispatcherWaitForWorkMode : int
     {
         WaitForWork = 0,

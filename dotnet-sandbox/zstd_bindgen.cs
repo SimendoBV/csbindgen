@@ -648,19 +648,40 @@ namespace CsBindgen
         public int upperBound;
     }
 
+    /// <summary>
+    ///   Streaming
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     internal unsafe partial struct ZSTD_inBuffer_s
     {
+        /// <summary>
+        /// &lt; start of input buffer
+        /// </summary>
         public void* src;
+        /// <summary>
+        /// &lt; size of input buffer
+        /// </summary>
         public nuint size;
+        /// <summary>
+        /// &lt; position where reading stopped. Will be updated. Necessarily 0 &lt;= pos &lt;= size
+        /// </summary>
         public nuint pos;
     }
 
     [StructLayout(LayoutKind.Sequential)]
     internal unsafe partial struct ZSTD_outBuffer_s
     {
+        /// <summary>
+        /// &lt; start of output buffer
+        /// </summary>
         public void* dst;
+        /// <summary>
+        /// &lt; size of output buffer
+        /// </summary>
         public nuint size;
+        /// <summary>
+        /// &lt; position where writing stopped. Will be updated. Necessarily 0 &lt;= pos &lt;= size
+        /// </summary>
         public nuint pos;
     }
 

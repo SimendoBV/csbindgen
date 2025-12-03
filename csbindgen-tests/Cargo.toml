@@ -14,7 +14,7 @@ path = "src/lib.rs"
 
 [dependencies]
 csbindgen = { path = "../csbindgen" }
-bitflags = "2.1.0"
+bitflags = "2.10.0"
 # physx-sys = "0.11.0"
 
 [build-dependencies]
